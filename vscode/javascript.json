@@ -1,0 +1,85 @@
+{
+    "test": {
+        "prefix": "test",
+        "body": [
+            "import React from 'react'",
+            "import renderer from 'react-test-renderer'\n\n",
+            "import $1 from '../$2'\n\n",
+            "it('renders correctly', () => {",
+            "  const tree = renderer.create(<$1/>).toJSON()",
+            "  expect(tree).toMatchSnapshot()",
+            "})"
+        ],
+        "description": "Basic code for component test"
+    },
+
+    "mock": {
+        "prefix": "mock",
+        "body": [
+            "jest.mock('../$1', () => props => <div {...props}>$2</div>)"
+        ],
+        "description": "Basic code for mock component"
+    },
+
+    "croods mock": {
+        "prefix": "mock croods info",
+        "body": [
+            "jest.mock('croods', () => ({",
+            "    Info: ({render, ...props}) => <div {...props}>Info - {render({})}</div>",
+            "}))"
+        ],
+        "description": "Mock croods info"
+    },
+
+    "reach router mock": {
+        "prefix": "mock reach router",
+        "body":[
+            "jest.mock('@reach/router', () => ({",
+            "    Redirect: props => <div {...props}>Redirect</div>,",
+            "    Link: ({ children, ...props }) => <div {...props}>Link - {children}</div>,",
+            "}))"
+        ]
+    },
+
+    "start component": {
+        "prefix": "start component",
+        "body": [
+                "import React from 'react'",
+                "",
+                "const $1 = props => ({})",
+                "",
+                "export default $1"
+        ]
+    },
+
+    "helmet component": {
+        "prefix": "helmet",
+        "body": [
+            "import { Helmet } from 'react-helmet'",
+            "<Helmet>",
+            "    <title>BrazilLAB</title>",
+              "</Helmet>"
+        ]
+    },
+
+    "mock formik": {
+        "prefix": "mock formik",
+        "body": [
+            "jest.mock('formik', () => ({",
+            "  Formik: ({ render, ...props }) => (",
+            "    <div {...props}>Formik - {render({ foo: 'bar' })}</div>",
+            "  ),",
+            "}))"
+        ]
+    },
+
+    "useState()": {
+		"prefix": "us",
+		"scope": "javascript,javascriptreact,typescript,typescriptreact",
+		"body": [
+		  "const [${1}, set${1/(.*)/${1:/capitalize}/}] = useState($2)",
+		  "$0"
+		],
+		"description": "React: useState()"
+	  }
+}
